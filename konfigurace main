@@ -1,0 +1,88 @@
+esphome:
+  name: topeni2
+  friendly_name: topení2
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API  
+api:
+  encryption:
+    key: "/a3oBIZd1njjyFjYm9FVvBGOdIVT15SuBWIPicDeUQk="
+
+ota:
+  platform: esphome
+  password: "bcefd8c25dd3a9671ba7feb6cfd06ef6"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  ap:
+    ssid: "Topeni2 Fallback Hotspot"
+    password: "mYBPN4zw7ZrJ"
+
+captive_portal:
+
+# Relé pro zapnutí topení (např. D5 / GPIO5)
+switch:
+  - platform: gpio
+    pin: GPIO5
+    id: heating_relay
+    name: "Relé topení"
+    restore_mode: ALWAYS_OFF
+
+# PWM ventilátor (např. D23 / GPIO23 jako výstup PWM)
+output:
+  - platform: ledc
+    pin: GPIO23
+    id: pwm_fan
+    frequency: 25000 Hz
+
+fan:
+  - platform: speed
+    output: pwm_fan
+    id: fan_control
+    name: "Ventilátor topení"
+    on_turn_on:
+      - switch.turn_on: heating_relay
+    on_turn_off:
+      - switch.turn_off: heating_relay
+
+# Tlačítko pro zvýšení otáček (např. D12 / GPIO12)
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO12
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Tlačítko zvýšit otáčky"
+    on_press:
+      then:
+        - lambda: |-
+            auto fan = id(fan_control);
+            float current_speed = fan->state.current_speed;
+            float new_speed = current_speed + 0.1;
+            if (new_speed > 1.0) new_speed = 1.0;
+            fan->set_speed(new_speed);
+
+  # Tlačítko pro snížení otáček (např. D14 / GPIO14)
+  - platform: gpio
+    pin:
+      number: GPIO14
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Tlačítko snížit otáčky"
+    on_press:
+      then:
+        - lambda: |-
+            auto fan = id(fan_control);
+            float current_speed = fan->state.current_speed;
+            float new_speed = current_speed - 0.1;
+            if (new_speed < 0.0) new_speed = 0.0;
+            fan->set_speed(new_speed);
