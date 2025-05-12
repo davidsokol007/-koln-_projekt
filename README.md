@@ -1,21 +1,27 @@
-Název projektu: 
+Název projektu
+-
 Chytrý rozfuk teplého vzduchu z topení
 
-Autoři: 
+Autoři
+-
 David Sokol, Lukáš Mráček, Samuel Novák
 
-Cíl projektu:
+Cíl projektu
+-
 Cílem projektu je eliminace vzniku plísní ve vlhkých místnosti pomocí aktivního rozhánění teplého vzduchu z radiátoru pomocí ventilátorů.
 
-Motivace:
+Motivace
+-
 V chladných měsících dochází u špatně cirkulujícího vzduchu k lokálnímu hromadění vlhkosti a tvorbě plísní. Tento projekt pomáhá zlepšit šíření tepla v místnosti.
 
-Přínos:
+Přínos
+-
 Prevence plísní.
 Lepší rozprostření tepla.
 Integrace do chytré domácnosti.
 
-Popis zařízení a funkce:
+Popis zařízení a funkce
+-
 Zařízení se umisťuje přímo na nebo nad radiátor.
 Při dosažení teploty 30 °C (indikace zapnutého topení) se automaticky spustí 4 ventilátory, které rozhánějí teplý vzduch do prostoru místnosti.
 
