@@ -13,6 +13,8 @@ převodník napětí 12V --> 5V
 
 digitální teploměr DS18B20
 
+rele 5V s optočlenem 
+
 
 ostatní komponenty
 ----------------------------
