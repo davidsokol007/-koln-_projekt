@@ -28,3 +28,22 @@ Při dosažení teploty 30 °C (indikace zapnutého topení) se automaticky sp
 Otáčky ventilátorů lze regulovat dvěma způsoby:
 Lokálně pomocí rotačního enkodéru.
 Dálkově přes Home Assistant.
+
+Software a programování
+-
+Platforma: ESPHome
+
+Integrace: Home Assistant (ovládání otáček, stav, teplota)
+
+Funkce programu:
+-
+
+Čtení teploty
+
+Automatické spínání ventilátorů při ≥ 30 °C
+
+PWM výstup pro řízení otáček (ručně nebo z Home Assistant)
+
+Čtení pozice rotačního enkodéru pro manuální nastavení
+
+Odesílání dat do Home Assistant
